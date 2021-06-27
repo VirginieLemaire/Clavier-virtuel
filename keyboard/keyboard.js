@@ -35,11 +35,11 @@ const keyboard = {
         document.body.appendChild(this.elements.main);
     },
 
-    //2) Créer les keys du clavier
+    //2) Créer les touches du clavier
     _createKeys() { //_ = "private method"
         const fragment = document.createDocumentFragment();
         const keyLayout = [
-            //contient toutes touches du clavier
+            //contient toutes les touches du clavier
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
             "a", "z", "e", "r", "t", "y", "u", "i", "o", "p",
             "caps", "q", "s", "d", "f", "g", "h", "j", "k", "l","m", "enter",
@@ -54,7 +54,7 @@ const keyboard = {
 
         keyLayout.forEach(key => {
             const keyElement = document.createElement("button");
-            // insère un saut à la ligne si la key est l'un ce de celles spécifiées dans insertLineBreak et que le méthode indexOf ne retourne pas -1 (donc s'il trouve cette key dans le tableau)
+            // insère un saut à la ligne si la touche est l'une ce de celles spécifiées dans insertLineBreak et que le méthode indexOf ne retourne pas -1 (donc s'il trouve cette touche dans le tableau)
             const insertLineBreak = ["backspace", "p", "enter", "!"].indexOf(key) !== -1;
 
             //ajoute un attribut à keyElement
