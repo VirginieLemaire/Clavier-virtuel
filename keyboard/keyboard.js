@@ -12,45 +12,92 @@ const keyboard = {
         onclose : null
     },
 
-    // the differents values
+    // les différentes valeurs
     properties : {
         value : "",
-        capsLock : false, // the keyboard is capslocked or not
+        capsLock : false, // le clavier a activé casplock ou non
 
     },
 
-    //METHODS
-    //1) Initialize
+    //METHODES
+    //1) Initialiser
     init() {
         console.log("toto");
-        // create main elements
+        // créer les principaux éléments
         this.elements.main = document.createElement("div");
         this.elements.keysContainer = document.createElement("div");
-        //setup main elements
-        this.elements.main.classList.add("keyboard", "1keyboard--hidden"); //remove the 1 when development is done
+        //paramétrer les principaux éléments
+        this.elements.main.classList.add("keyboard", "1keyboard--hidden"); //enlever le "1" quand le développement sera fini
         this.elements.keysContainer.classList.add("keyboard__keys");
 
-        //add to DOM
+        //ajouter au DOM
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
     },
 
-    //2) Create keys
-    _createKeys() { //_ = private method
-        //
+    //2) Créer les keys du clavier
+    _createKeys() { //_ = "private method"
+        const fragment = document.createDocumentFragment();
+        const keyLayout = [
+            //contient toutes touches du clavier
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+            "a", "z", "e", "r", "t", "y", "u", "i", "o", "p",
+            "caps", "q", "s", "d", "f", "g", "h", "j", "k", "l","m", "enter",
+            "done", "w", "x", "c", "v", "b", "n", ",", ";", ":", "?", ".", "!",
+            "space"
+        ];
+
+        //fonction qui crée le HTML pour les icones google
+        const createIconHTML = (icon_name) => {
+            return `<span class="material-icons">${icon_name}</span>`;
+        };
+
+        keyLayout.forEach(key => {
+            const keyElement = document.createElement("button");
+            // insère un saut à la ligne si la key est l'un ce de celles spécifiées dans insertLineBreak et que le méthode indexOf ne retourne pas -1 (donc s'il trouve cette key dans le tableau)
+            const insertLineBreak = ["backspace", "p", "enter", "!"].indexOf(key) !== -1;
+
+            //ajoute un attribut à keyElement
+            keyElement.setAttribute("type", "button");
+            keyElement.classList.add("keyboard__key");
+
+            switch (key) {
+                case "backspace":
+                    keyElement.classList.add ("keyboard__key--wide");
+                    keyElement.innerHTML = createIconHTML("backspace");
+                    // backspace => du coup on doit supprimer un caractère:
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value = this.properties.value.substring(0, this.properties.value.length -1); //substring du 1er à l'avant dernier caractère - longueur moins 1)
+                        //change l'event en "oninput"
+                        this._tiggerEvent("oninput");
+                    })
+                    break;
+                case "caps":
+                        keyElement.classList.add ("keyboard__key--wide", "keyboard__key--activatable");
+                        keyElement.innerHTML = createIconHTML("keyboard_capslock");
+                        // capsLock => majuscules
+                        keyElement.addEventListener("click", () => {
+                            //passe la méthode togglecapslock
+                            this._toggleCapsLock();
+                            //change la classe en "active" pour avoir le petit bouton vert
+                            keyElement.classList.toggle("keyboard__key:active", this.properties.capsLock); 
+                        })
+                        break;    
+            }
+        });
     },
 
-    //3) Trigger the events
+    //3) Déclencheur d'évènements
     _tiggerEvent(handlerName) {
         console.log("Event triggered ! Event Name :" + handlerName);
     },
 
-    //4) toggling the capslock mode
+    //4) toggle le mode de capslock ("allumé" ou non)
     _toggleCapsLock() {
         console.log("caps lock toggled ;p")
     },
 
-    //5 ) 2 methods - open and close the keyboard
+    //5 ) 2 méthodes -> ouvre + ferme le clavier
     open(initialValue, oninput, onclose) {
         //
     },
@@ -62,6 +109,5 @@ const keyboard = {
 
 
 window.addEventListener("DOMContentLoaded", function() {
-    //once the DOM is loaded => initialize the keyboard
     keyboard.init();
 });
