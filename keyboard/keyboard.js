@@ -22,7 +22,17 @@ const keyboard = {
     //METHODS
     //1) Initialize
     init() {
-        //
+        console.log("toto");
+        // create main elements
+        this.elements.main = document.createElement("div");
+        this.elements.keysContainer = document.createElement("div");
+        //setup main elements
+        this.elements.main.classList.add("keyboard", "1keyboard--hidden"); //remove the 1 when development is done
+        this.elements.keysContainer.classList.add("keyboard__keys");
+
+        //add to DOM
+        this.elements.main.appendChild(this.elements.keysContainer);
+        document.body.appendChild(this.elements.main);
     },
 
     //2) Create keys
@@ -40,7 +50,7 @@ const keyboard = {
         console.log("caps lock toggled ;p")
     },
 
-    //5 ) 2 méthodes - ouvrir et fermer le clavier
+    //5 ) 2 methods - open and close the keyboard
     open(initialValue, oninput, onclose) {
         //
     },
@@ -49,3 +59,9 @@ const keyboard = {
         //
     }
 };
+
+
+window.addEventListener("DOMContentLoaded", function() {
+    //once the DOM is loaded => initialize the keyboard
+    keyboard.init();
+});
