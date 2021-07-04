@@ -40,10 +40,6 @@
     position: relative;
 }
 
-.keyboard__key:active {
-    background: rgba(255, 255, 255, 0.12);
-}
-
 .keyboard__key--wide {
     width: 12%;
 }
@@ -64,6 +60,9 @@
     background: rgba(0, 0, 0, 0.4);
 }
 
+.keyboard__key--active {
+    background: rgba(255, 255, 255, 0.12);
+}
 .keyboard__key--active::after {
     background: greenyellow;
 }

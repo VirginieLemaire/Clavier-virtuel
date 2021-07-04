@@ -73,16 +73,26 @@ const keyboard = {
                     })
                     break;
                 case "caps":
-                        keyElement.classList.add ("keyboard__key--wide", "keyboard__key--activatable");
-                        keyElement.innerHTML = createIconHTML("keyboard_capslock");
-                        // capsLock => majuscules
-                        keyElement.addEventListener("click", () => {
-                            //passe la méthode togglecapslock
-                            this._toggleCapsLock();
-                            //change la classe en "active" pour avoir le petit bouton vert
-                            keyElement.classList.toggle("keyboard__key:active", this.properties.capsLock); 
-                        })
-                        break;    
+                    keyElement.classList.add ("keyboard__key--wide", "keyboard__key--activatable");
+                    keyElement.innerHTML = createIconHTML("keyboard_capslock");
+                    // capsLock => majuscules
+                    keyElement.addEventListener("click", () => {
+                        //passe la méthode togglecapslock
+                        this._toggleCapsLock();
+                        //change la classe en "active" pour avoir le petit bouton vert
+                        keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock); 
+                    })
+                    break;
+                case "enter":
+                    keyElement.classList.add ("keyboard__key--wide");
+                    keyElement.innerHTML = createIconHTML("keyboard_return");
+                    //Eventlistener
+                    keyElement.addEventListener("click", () => {
+                        //
+                        this.properties.value += "\n";
+                        this._tiggerEvent("oninput");
+                    });
+                    break;
             }
         });
     },
