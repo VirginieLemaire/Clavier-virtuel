@@ -33,6 +33,7 @@ const keyboard = {
         //ajouter le clavier au DOM
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
+        this.elements.keysContainer.appendChild(this._createKeys());
     },
 
     //2) Créer les touches du clavier
