@@ -63,7 +63,7 @@ const keyboard = {
 
             switch (key) {
                 case "backspace":
-                    keyElement.classList.add ("keyboard__key--wide");
+                    keyElement.classList.add("keyboard__key--wide");
                     keyElement.innerHTML = createIconHTML("backspace");
                     // backspace => du coup on doit supprimer un caractère:
                     keyElement.addEventListener("click", () => {
@@ -72,8 +72,9 @@ const keyboard = {
                         this._tiggerEvent("oninput");
                     })
                     break;
+
                 case "caps":
-                    keyElement.classList.add ("keyboard__key--wide", "keyboard__key--activatable");
+                    keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
                     keyElement.innerHTML = createIconHTML("keyboard_capslock");
                     // capsLock => majuscules
                     keyElement.addEventListener("click", () => {
@@ -83,13 +84,44 @@ const keyboard = {
                         keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock); 
                     })
                     break;
+
                 case "enter":
-                    keyElement.classList.add ("keyboard__key--wide");
+                    keyElement.classList.add("keyboard__key--wide");
                     keyElement.innerHTML = createIconHTML("keyboard_return");
                     //Eventlistener
                     keyElement.addEventListener("click", () => {
                         //
                         this.properties.value += "\n";
+                        this._tiggerEvent("oninput");
+                    });
+                    break;
+
+                case "spacebar":
+                    keyElement.classList.add("keyboard__key--extra-wide");
+                    keyElement.innerHTML = createIconHTML("space_bar");
+                    //Eventlistener
+                    keyElement.addEventListener("click", () => {
+                        //
+                        this.properties.value += " ";
+                        this._tiggerEvent("oninput");
+                    });
+                    break;
+
+                case "done" :
+                    keyElement.classList.add("keyboard__key--wide keyboard__key--dark");
+                    keyElement.innerHTML = createIconHTML("check_circle");
+                    //eventlistener
+                    keyElement.addEventListener("click", () => {
+                        this.close();
+                        this._tiggerEvent("onclose");
+                    });
+                    break;
+                    
+                default :
+                    keyElement.textContent = key.toLocaleLowerCase();
+                    //eventlistener
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value += this.properties.capsLock ? /*si capslock est sur on*/ key.toUpperCase() :/*sinon*/ key.toLowerCase() ;
                         this._tiggerEvent("oninput");
                     });
                     break;

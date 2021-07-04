@@ -12,20 +12,9 @@ Accessoirement, c'est un bon moyen de pratiquer, réviser et apprendre de nouvel
 
 ## Où j'en suis
 
-Je me suis arrêtée à 41:09 de la vidéo
-
-=> en plein switch des touches "icônes"
-
-* backspace fait
-* caps fait
+switch fini (45:37 min)
 
 ## Reste à faire
-
-Reste (dans le switch) :
-
-* space bar
-* check circle
-* et peut-être la touche entrée qui n'a pas encore été montrée
 
 Il faudra aussi :
 
