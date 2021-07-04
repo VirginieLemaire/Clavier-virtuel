@@ -30,14 +30,14 @@ const keyboard = {
         this.elements.main.classList.add("keyboard", "1keyboard--hidden"); //enlever le "1" quand le développement sera fini
         this.elements.keysContainer.classList.add("keyboard__keys");
 
-        //ajouter au DOM
+        //ajouter le clavier au DOM
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
     },
 
     //2) Créer les touches du clavier
     _createKeys() { //_ = "private method"
-        const fragment = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment(); //un élément virtuel "container" auquel on peut ajouter d'autres éléments, le tout sera ajouté au document en 1 fois.
         const keyLayout = [
             //contient toutes les touches du clavier
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
@@ -46,12 +46,12 @@ const keyboard = {
             "done", "w", "x", "c", "v", "b", "n", ",", ";", ":", "?", ".", "!",
             "space"
         ];
-
         //fonction qui crée le HTML pour les icones google
         const createIconHTML = (icon_name) => {
             return `<span class="material-icons">${icon_name}</span>`;
         };
 
+        //créer chaque touche du clavier
         keyLayout.forEach(key => {
             const keyElement = document.createElement("button");
             // insère un saut à la ligne si la touche est l'une ce de celles spécifiées dans insertLineBreak et que le méthode indexOf ne retourne pas -1 (donc s'il trouve cette touche dans le tableau)
@@ -116,7 +116,7 @@ const keyboard = {
                         this._tiggerEvent("onclose");
                     });
                     break;
-                    
+
                 default :
                     keyElement.textContent = key.toLocaleLowerCase();
                     //eventlistener
@@ -126,7 +126,15 @@ const keyboard = {
                     });
                     break;
             }
+            //insérer la touche créée dans le clavier
+            fragment.appendChild(keyElement);
+
+            if (insertLineBreak) {
+                fragment.appendChild(document.createElement("br"));
+            }
         });
+
+        return fragment;
     },
 
     //3) Déclencheur d'évènements

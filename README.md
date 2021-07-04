@@ -12,7 +12,7 @@ Accessoirement, c'est un bon moyen de pratiquer, réviser et apprendre de nouvel
 
 ## Où j'en suis
 
-switch fini (45:37 min)
+méthode createKeys finie (46:40 min)
 
 ## Reste à faire
 
