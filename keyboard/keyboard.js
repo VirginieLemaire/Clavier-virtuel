@@ -22,18 +22,19 @@ const keyboard = {
     //METHODES
     //1) Initialiser
     init() {
-        console.log("toto");
         // créer les principaux éléments
         this.elements.main = document.createElement("div");
         this.elements.keysContainer = document.createElement("div");
         //paramétrer les principaux éléments
         this.elements.main.classList.add("keyboard", "1keyboard--hidden"); //enlever le "1" quand le développement sera fini
         this.elements.keysContainer.classList.add("keyboard__keys");
+        this.elements.keysContainer.appendChild(this._createKeys());
+
+        this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
         //ajouter le clavier au DOM
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
-        this.elements.keysContainer.appendChild(this._createKeys());
     },
 
     //2) Créer les touches du clavier
@@ -70,7 +71,7 @@ const keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value = this.properties.value.substring(0, this.properties.value.length -1); //substring du 1er à l'avant dernier caractère - longueur moins 1)
                         //change l'event en "oninput"
-                        this._tiggerEvent("oninput");
+                        this._triggerEvent("oninput");
                     })
                     break;
 
@@ -93,7 +94,7 @@ const keyboard = {
                     keyElement.addEventListener("click", () => {
                         //
                         this.properties.value += "\n";
-                        this._tiggerEvent("oninput");
+                        this._triggerEvent("oninput");
                     });
                     break;
 
@@ -104,7 +105,7 @@ const keyboard = {
                     keyElement.addEventListener("click", () => {
                         //
                         this.properties.value += " ";
-                        this._tiggerEvent("oninput");
+                        this._triggerEvent("oninput");
                     });
                     break;
 
@@ -114,7 +115,7 @@ const keyboard = {
                     //eventlistener
                     keyElement.addEventListener("click", () => {
                         this.close();
-                        this._tiggerEvent("onclose");
+                        this._triggerEvent("onclose");
                     });
                     break;
 
@@ -122,8 +123,8 @@ const keyboard = {
                     keyElement.textContent = key.toLocaleLowerCase();
                     //eventlistener
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += this.properties.capsLock ? /*si capslock est sur on*/ key.toUpperCase() :/*sinon*/ key.toLowerCase() ;
-                        this._tiggerEvent("oninput");
+                        this.properties.value += this.properties.capsLock ? /*si capslock est sur on, alors*/ key.toUpperCase() :/*sinon*/ key.toLowerCase() ;
+                        this._triggerEvent("oninput");
                     });
                     break;
             }
@@ -139,13 +140,19 @@ const keyboard = {
     },
 
     //3) Déclencheur d'évènements
-    _tiggerEvent(handlerName) {
+    _triggerEvent(handlerName) {
         console.log("Event triggered ! Event Name :" + handlerName);
     },
 
     //4) toggle le mode de capslock ("allumé" ou non)
     _toggleCapsLock() {
-        console.log("caps lock toggled ;p")
+        this.properties.capsLock = !this.properties.capsLock; //bascule la propriété de capsLock
+        
+        for ( const key of this.elements.keys) {
+            if (key.childElementCount === 0) {
+                key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+            }
+        }
     },
 
     //5 ) 2 méthodes -> ouvre + ferme le clavier
