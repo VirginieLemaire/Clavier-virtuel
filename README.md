@@ -1,6 +1,8 @@
 # Réalisation d'un clavier virtuel en suivant un tuto vidéo
 
 Un exercice effectué en suivant le tuto vidéo proposé par dcode sur https://www.youtube.com/watch?v=N3cq0BHDMOY&t=201s.
+Ce clavier s'affiche au clic dans le champ de texte.
+Il se ferme en cliquant sur 
 
 ## But
 
@@ -10,16 +12,3 @@ Il faudra pour ça que je crée un clavier avec uniquement les touche de déplac
 
 Accessoirement, c'est un bon moyen de pratiquer, réviser et apprendre de nouvelles choses.
 
-## Où j'en suis
-
-méthode createKeys finie (46:40 min)
-
-## Reste à faire
-
-Il faudra aussi :
-
-* mettre les instructions dans les méthodes
-  * _tiggerEvent
-  * _toggleCapsLock
-  * open
-  * close
