@@ -7,13 +7,34 @@
     <!-- icones google -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <!-- polices de caractère -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,400&amp;family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+    <!-- feuille de style -->
     <link rel="stylesheet" href="./keyboard/keyboard.css">
     <title>Clavier virtuel</title>
 </head>
 <body>
+  <header>
     <h1>Mon clavier virtuel</h1>
-    <p>Un clavier effectué en suivant <a href="https://www.youtube.com/watch?v=N3cq0BHDMOY&t=201s">tuto vidéo Virtual Keyboard in JavaScript - HTML, CSS\& JavaScript Tutorial (Project Video)</a> de dcode</p>
-    <textarea name="champ de texte" class="use-keyboard-input" cols="30" rows="10"></textarea>
+
+  </header>
+  <main>
+    <section class="info part">
+      <h2>Cliquer dans le champ de saisie pour faire apparaitre le clavier virtuel.</h2>
+      <p>Le clavier virtuel permet à un utilisateur ne possédant pas de claiver d'effectuer une saisie grâce à la souris (ou le doigt sur un écran tactile).</p>
+      <p>Pour fermer le clavier virtuel, cliquer sur la touche avec une coche située sur la gauche du clavier. </p>
+      <img src="./images/touche-fermer.png" alt="indication de l'endroit où se trouve la touche 'fermer le clavier'" title="copie d'écran du clavier virtuel avec flèche indiquant la position de la touche">
+    </section>
+    <section class="playground part">
+      <label for="champ de texte">Champ de saisie : </label>
+      <textarea name="champ de texte" class="use-keyboard-input" cols="30" rows="10"></textarea>
+    </section>
+  </main>
+  <footer>
+    <p>Un clavier codé en suivant un tutoriel vidéo <a href="https://www.youtube.com/watch?v=N3cq0BHDMOY&t=201s">Virtual Keyboard in JavaScript - HTML, CSS\& JavaScript Tutorial (Project Video)</a> de dcode (ressource en anglais)</p>
+  </footer>
     <script src="./keyboard/keyboard.js"></script>
 </body>
 </html>

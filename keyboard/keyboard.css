@@ -1,3 +1,48 @@
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+header {
+    text-align: center;
+}
+main {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 3rem;
+    background-color: rgba(171, 248, 232, 0.5);
+    border-radius: 0.5rem;
+}
+footer {
+    height: 10vh;
+    text-align: center;
+    font-style: italic;
+    font-family: "Roboto", sans-serif;
+}
+.part {
+    flex: 1;
+    padding: 2rem;
+}
+.use-keyboard-input {
+    width: 100%;
+    background-color: rgba(231, 240, 238, 0.5);
+    border-radius: 0.5rem;
+    border: solid 1px rgb(50, 141, 141);
+    padding: 0.6rem;
+}
+textarea {
+    font-family: "Roboto", sans-serif;
+}
+label {
+    font-style: italic;
+}
+h1 {
+    font-size: 3rem;
+    padding: 1rem;
+}
+img {
+    max-width: 100%;
+}
+/* Keyboard elements */
 .keyboard {
     position: fixed;
     left : 0;
@@ -71,9 +116,3 @@
     background: rgba(0, 0, 0, 0.25);
 }
 
-.use-keyboard-input {
-    position: absolute;
-    top: 150px;
-    right: 30px;
-    width:auto;
-}
