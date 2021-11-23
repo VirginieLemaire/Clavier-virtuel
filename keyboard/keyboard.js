@@ -57,14 +57,19 @@ const keyboard = {
             "done", "w", "x", "c", "v", "b", "n", ",", ";", ":", "?", ".", "!",
             "space"
         ];
-        //fonction qui crée le HTML pour les icones google
+        //fonction qui crée le code HTML pour insérer les icones google
         const createIconHTML = (icon_name) => {
-            return `<span class="material-icons">${icon_name}</span>`;
+            const span = document.createElement("span");
+            span.classList.add("material-icons");
+            span.textContent= `${icon_name}`;
+            return span;
+            //return `<span class="material-icons">${icon_name}</span>`;
         };
 
         //créer chaque touche du clavier
         keyLayout.forEach(key => {
             const keyElement = document.createElement("button");
+            let createIcon = "";
             // insère un saut à la ligne si la touche est l'une ce de celles spécifiées dans insertLineBreak et que le méthode indexOf ne retourne pas -1 (donc s'il trouve cette touche dans le tableau)
             const insertLineBreak = ["backspace", "p", "enter", "!"].indexOf(key) !== -1;
 
@@ -75,7 +80,8 @@ const keyboard = {
             switch (key) {
                 case "backspace":
                     keyElement.classList.add("keyboard__key--wide");
-                    keyElement.innerHTML = createIconHTML("backspace");
+                    createIcon = createIconHTML("backspace");
+                    keyElement.appendChild(createIcon);
                     // backspace => du coup on doit supprimer un caractère:
                     keyElement.addEventListener("click", () => {
                         this.properties.value = this.properties.value.substring(0, this.properties.value.length -1); //substring du 1er à l'avant dernier caractère - longueur moins 1)
@@ -86,7 +92,8 @@ const keyboard = {
 
                 case "caps":
                     keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
-                    keyElement.innerHTML = createIconHTML("keyboard_capslock");
+                    createIcon = createIconHTML("keyboard_capslock");
+                    keyElement.appendChild(createIcon);
                     // capsLock => majuscules
                     keyElement.addEventListener("click", () => {
                         //passe la méthode togglecapslock
@@ -98,7 +105,8 @@ const keyboard = {
 
                 case "enter":
                     keyElement.classList.add("keyboard__key--wide");
-                    keyElement.innerHTML = createIconHTML("keyboard_return");
+                    createIcon = createIconHTML("keyboard_return");
+                    keyElement.appendChild(createIcon);
                     //Eventlistener
                     keyElement.addEventListener("click", () => {
                         //
@@ -109,7 +117,8 @@ const keyboard = {
 
                 case "space":
                     keyElement.classList.add("keyboard__key--extra-wide");
-                    keyElement.innerHTML = createIconHTML("space_bar");
+                    createIcon = createIconHTML("space_bar");
+                    keyElement.appendChild(createIcon);
                     //Eventlistener
                     keyElement.addEventListener("click", () => {
                         //
@@ -120,7 +129,8 @@ const keyboard = {
 
                 case "done" :
                     keyElement.classList.add("keyboard__key--wide", "keyboard__key--dark");
-                    keyElement.innerHTML = createIconHTML("check_circle");
+                    createIcon = createIconHTML("check_circle");
+                    keyElement.appendChild(createIcon);
                     //eventlistener
                     keyElement.addEventListener("click", () => {
                         this.close();
