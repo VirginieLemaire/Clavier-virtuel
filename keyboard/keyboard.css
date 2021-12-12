@@ -118,7 +118,7 @@ img {
 
 /* RESPONSIVE WEB */
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-device-width : 320px) and (max-device-width : 672px) {
+@media screen and (max-width : 672px) {
 
     /* Styles */
     main {
@@ -136,7 +136,7 @@ img {
     }
     .keyboard__key {
         height: 2rem;
-        max-width: 1.3rem;
+        max-width: 5%;
         margin: 0.2rem;
     }
     .material-icons {
@@ -151,7 +151,7 @@ img {
 
     }
     .keyboard__key--extra-wide {
-        width: 36%;
+        width: 20%;
         max-width: 30rem;
     }
 }

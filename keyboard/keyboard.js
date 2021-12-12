@@ -6,7 +6,7 @@ const keyboard = {
         keys : []
     },
 
-    //events
+    //évènements
     eventHandlers : {
         oninput : null,
         onclose : null
@@ -36,7 +36,7 @@ const keyboard = {
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
 
-        //utilisation autmatique du clavier avec la class .use-keyboard-input
+        //ouverture automatique et utilisation du clavier avec un écouteur d'évènement sur la classe '.use-keyboard-input'
         document.querySelectorAll(".use-keyboard-input").forEach(element => {
             element.addEventListener("focus", () => {
                 this.open(element.value, currentValue => {
